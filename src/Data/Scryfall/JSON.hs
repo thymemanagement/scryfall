@@ -17,9 +17,6 @@ getJSONField cnName fdName = case stripPrefix ("_" ++ (headMap toLower . nameBas
   Just str -> return $ camelTo2 '_' str
   Nothing -> fail $ (nameBase fdName) ++ "'s name is formatted incorrectly (constuctor name: " ++ (nameBase cnName) ++ ")"
 
-liftText :: T.Text -> ExpQ
-liftText txt = AppE (VarE 'T.pack) <$> lift (T.unpack txt)
-
 headMap :: (a -> a) -> [a] -> [a]
 headMap _ [] = []
 headMap f (x:xs) = (f x : xs)
@@ -28,13 +25,13 @@ fst3 :: (a,b,c) -> a
 fst3 (x,_,_) = x
 
 parseFieldSimple :: Name -> T.Text -> ExpQ
-parseFieldSimple vName field = [e| $(varE vName) .: $(liftText field) |]
+parseFieldSimple vName field = [e| $(varE vName) .: field |]
 
 parseFieldAlternative :: Name -> T.Text -> ExpQ
-parseFieldAlternative vName field = [e| $(varE vName) .:? $(liftText field) .!= empty |]
+parseFieldAlternative vName field = [e| $(varE vName) .:? field .!= empty |]
 
 parseFieldMonoid :: Name -> T.Text -> ExpQ
-parseFieldMonoid vName field = [e| $(varE vName) .:? $(liftText field) .!= mempty |]
+parseFieldMonoid vName field = [e| $(varE vName) .:? field .!= mempty |]
 
 parseFieldJSON :: Name -> Name -> Name -> ExpQ
 parseFieldJSON vName cnName fdName = do
