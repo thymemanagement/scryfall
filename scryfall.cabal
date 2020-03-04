@@ -1,0 +1,54 @@
+name:                scryfall
+version:             0.1.0.0
+synopsis:            Implementation of the Scryfall Web API for gathering information on Magic: The Gathering products
+homepage:            https://github.com/thymemanagement/scryfall
+license:             BSD3
+license-file:        LICENSE
+author:              Thyme Eppstein <yhtomite@gmail.com>
+maintainer:          Thyme Eppstein <yhtomite@gmail.com>
+copyright:           (c) 2020 Thyme Eppstein
+category:            Web, API, Games
+stability:           unstable
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+description:
+            A library implementing the web API of https://scryfall.com, a web service for gathering information
+            on Magic: The Gathering cards and products. This library is a work in progress and will be highly
+            unstable for the forseeable future. Use at your own risk.
+            .
+            This library provides data types built to parse API provided JSON objects.
+            In the future, it also plans on providing a low level @http-conduit@ interface
+            and a high level DSL for working with the Scryfall API.
+            .
+            This implementation is based off of the API Documentation provided at https://scryfall.com/docs/api
+            and is up to date as of the last update on October 1, 2019.
+
+extra-source-files:
+    README.md
+
+library
+  default-language:    Haskell2010
+  hs-source-dirs:      src
+  
+  exposed-modules:
+    Data.Scryfall
+  
+  other-modules:
+    Data.Scryfall.Card
+    Data.Scryfall.Internal
+    Data.Scryfall.JSON
+    Data.Scryfall.Misc
+    Data.Scryfall.Set
+                       
+  build-depends:
+    base >= 4.7 && < 5,
+    containers,
+    unordered-containers,
+    template-haskell,
+    aeson,
+    http-conduit,
+    text,
+    time,
+    vector,
+    profunctors
