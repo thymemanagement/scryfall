@@ -1,0 +1,1 @@
+{"object":"error","code":"bad_request","status":400,"warnings":["Invalid expression “is:slick” was ignored. Checking if cards are “slick” is not supported","Invalid expression “cmc\u003ecmc” was ignored. The sides of your comparison must be different."],"details":"All of your terms were ignored."}

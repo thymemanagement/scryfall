@@ -1,5 +1,5 @@
 {-# LANGUAGE TypeFamilies, DeriveGeneric #-}
-module Data.Scryfall.Misc(Color(..), CatalogF(..), ErrorF(..), ListF(..), RulingF(..), SymbolF(..)) where
+module Data.Scryfall.Misc (CatalogF(..), ErrorF(..), ListF(..), RulingF(..)) where
 
 import Data.Scryfall.Internal
 
@@ -8,8 +8,6 @@ import GHC.Generics
 import Data.Text
 import Data.Time
 import Data.Vector
-
-data Color = White | Blue | Black | Red | Green deriving (Generic,Eq,Ord,Read,Show)
 
 data CatalogF f a = Catalog
                 { _catalogUri                 :: HKD f Text
@@ -37,17 +35,4 @@ data RulingF f = Ruling
                 { _rulingSource               :: HKD f Text
                 , _rulingPublishedAt          :: HKD f Day
                 , _rulingComment              :: HKD f Text
-                } deriving (Generic)
-
-data SymbolF f = Symbol
-                { _symbolSymbol               :: HKD f Text
-                , _symbolLooseVariant         :: HKD f Text
-                , _symbolEnglish              :: HKD f Text
-                , _symbolTransposable         :: HKD f Bool
-                , _symbolRepresentsMana       :: HKD f Bool
-                , _symbolCmc                  :: HKD f (Maybe Double)
-                , _symbolAppearsInManaCosts   :: HKD f Bool
-                , _symbolFunny                :: HKD f Bool
-                , _symbolColors               :: HKD f (Vector Color)
-                , _symbolGathererAlternatives :: HKD f Text
                 } deriving (Generic)

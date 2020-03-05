@@ -2,7 +2,7 @@
 module Data.Scryfall.Card (Legality(..), Game(..), CardFaceF(..), RelatedCardF(..), CardF(..)) where
 
 import Data.Scryfall.Internal
-import Data.Scryfall.Misc
+import Data.Scryfall.Symbol
 
 import Data.Functor.Identity
 import GHC.Generics
@@ -96,7 +96,7 @@ data CardF f = Card
                , _cardHighresImage         :: HKD f Bool
                , _cardIllustrationId       :: HKD f Text
                , _cardImageUris            :: HKD f (HashMap Text Text)
-               , _cardPrices               :: HKD f (HashMap Text Text)
+               , _cardPrices               :: HKD f (HashMap Text (Maybe Text))
                , _cardPrintedName          :: HKD f Text
                , _cardPrintedText          :: HKD f Text
                , _cardPrintedTypeLine      :: HKD f Text

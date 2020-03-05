@@ -27,6 +27,9 @@ module Data.Scryfall
   , Symbol
   , SymbolF(..)
   , symbolLenses
+  , Mana
+  , ManaF(..)
+  , manaLenses
   , Set
   , SetF(..)
   , setLenses
@@ -37,6 +40,7 @@ import Data.Scryfall.Internal
 import Data.Scryfall.JSON
 import Data.Scryfall.Misc
 import Data.Scryfall.Set
+import Data.Scryfall.Symbol
 
 import Data.Functor.Identity
 import GHC.Generics
@@ -179,6 +183,20 @@ sfGenerateFromJSON ''SymbolF
 
 symbolLenses :: SymbolF (LensFor Symbol)
 symbolLenses = getLenses
+
+--mana
+
+type Mana = ManaF Identity
+
+deriving instance Eq (ManaF Identity)
+deriving instance Ord (ManaF Identity)
+deriving instance Read (ManaF Identity)
+deriving instance Show (ManaF Identity)
+
+sfGenerateFromJSON ''ManaF
+
+manaLenses :: ManaF (LensFor Mana)
+manaLenses = getLenses
 
 --set
 
