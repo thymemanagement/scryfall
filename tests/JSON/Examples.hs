@@ -14,7 +14,7 @@ exampleTests = testGroup "example tests"
                [ compareJSONTests badSearch badSearchValue
                , noCompareJSONTests (delver @Card)
                , noCompareJSONTests (ixalan @Set)
-               , noCompareJSONTests (landTypes @(Catalog Text))
+               , noCompareJSONTests (landTypes @Catalog)
                , noCompareJSONTests (ledRuling @(List Ruling))
                , noCompareJSONTests (notFound @Error)
                , noCompareJSONTests (parseMana @Mana)

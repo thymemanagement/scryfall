@@ -9,10 +9,10 @@ import Data.Text
 import Data.Time
 import Data.Vector
 
-data CatalogF f a = Catalog
+data CatalogF f = Catalog
                 { _catalogUri                 :: HKD f Text
                 , _catalogTotalValues         :: HKD f Integer 
-                , _catalogData                :: HKD f (Vector a)
+                , _catalogData                :: HKD f (Vector Text)
                 } deriving (Generic)
 
 data ErrorF f = Error

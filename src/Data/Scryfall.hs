@@ -16,6 +16,7 @@ module Data.Scryfall
   , cardLenses
   , Catalog
   , CatalogF(..)
+  , catalogLenses
   , Error
   , ErrorF(..)
   , errorLenses
@@ -114,18 +115,17 @@ cardLenses = getLenses
 
 --catalog
 
-type Catalog a = CatalogF Identity a
+type Catalog = CatalogF Identity
 
-deriving instance Eq a => Eq (CatalogF Identity a)
-deriving instance Ord a => Ord (CatalogF Identity a)
-deriving instance Read a => Read (CatalogF Identity a)
-deriving instance Show a => Show (CatalogF Identity a)
+deriving instance Eq (CatalogF Identity)
+deriving instance Ord (CatalogF Identity)
+deriving instance Read (CatalogF Identity)
+deriving instance Show (CatalogF Identity)
 
 sfGenerateFromJSON ''CatalogF
 
--- TODO
-{- catalogLenses :: CatalogF (LensFor (Catalog a)) a
-catalogLenses = getLenses -}
+catalogLenses :: CatalogF (LensFor Catalog)
+catalogLenses = getLenses
 
 --error
 

@@ -34,6 +34,7 @@ library
   
   exposed-modules:
     Data.Scryfall
+    Data.Scryfall.Request              
   
   other-modules:
     Data.Scryfall.Card
@@ -48,7 +49,11 @@ library
     unordered-containers >= 0.2.9.0 && < 0.3,
     template-haskell >= 2.11.0.0 && < 2.16,
     aeson >= 1.4.0.0 && < 1.5,
+    uuid,            
+    network-uri,
+    modern-uri,
     http-conduit < 2.4,
+    microlens,            
     text >= 1.2.4.0 && < 1.3,
     time >= 1.9 && < 1.10,
     vector >= 0.12.0.0 && < 0.13,
@@ -70,6 +75,7 @@ test-suite tests
     Data.Scryfall.Internal
     Data.Scryfall.JSON
     Data.Scryfall.Misc
+    Data.Scryfall.Request            
     Data.Scryfall.Set
     Data.Scryfall.Symbol
 
