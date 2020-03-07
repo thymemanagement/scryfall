@@ -48,6 +48,7 @@ import GHC.Generics
 
 import Data.Aeson
 import Data.Text (unpack)
+import qualified Text.URI as U
 
 --color
 
@@ -81,7 +82,6 @@ type CardFace = CardFaceF Identity
 
 deriving instance Eq (CardFaceF Identity)
 deriving instance Ord (CardFaceF Identity)
-deriving instance Read (CardFaceF Identity)
 deriving instance Show (CardFaceF Identity)
 
 sfGenerateFromJSON ''CardFaceF
@@ -93,7 +93,6 @@ type RelatedCard = RelatedCardF Identity
 
 deriving instance Eq (RelatedCardF Identity)
 deriving instance Ord (RelatedCardF Identity)
-deriving instance Read (RelatedCardF Identity)
 deriving instance Show (RelatedCardF Identity)
 
 sfGenerateFromJSON ''RelatedCardF
@@ -101,14 +100,24 @@ sfGenerateFromJSON ''RelatedCardF
 relatedCardLenses :: RelatedCardF (LensFor RelatedCard)
 relatedCardLenses = getLenses
 
+type Preview = PreviewF Identity
+
+deriving instance Eq (PreviewF Identity)
+deriving instance Ord (PreviewF Identity)
+deriving instance Show (PreviewF Identity)
+
+sfGenerateFromJSON ''PreviewF
+
+previewLenses :: PreviewF (LensFor Preview)
+previewLenses = getLenses
+
 type Card = CardF Identity
 
 deriving instance Eq (CardF Identity)
 deriving instance Ord (CardF Identity)
-deriving instance Read (CardF Identity)
 deriving instance Show (CardF Identity)
 
-sfGenerateFromJSON ''CardF
+sfGenerateFromJSON ''CardF --really slow compile times. should do something about this
 
 cardLenses :: CardF (LensFor Card)
 cardLenses = getLenses
@@ -119,7 +128,6 @@ type Catalog = CatalogF Identity
 
 deriving instance Eq (CatalogF Identity)
 deriving instance Ord (CatalogF Identity)
-deriving instance Read (CatalogF Identity)
 deriving instance Show (CatalogF Identity)
 
 sfGenerateFromJSON ''CatalogF
@@ -133,7 +141,6 @@ type Error = ErrorF Identity
 
 deriving instance Eq (ErrorF Identity)
 deriving instance Ord (ErrorF Identity)
-deriving instance Read (ErrorF Identity)
 deriving instance Show (ErrorF Identity)
 
 sfGenerateFromJSON ''ErrorF
@@ -147,7 +154,6 @@ type List a = ListF Identity a
 
 deriving instance Eq a => Eq (ListF Identity a)
 deriving instance Ord a => Ord (ListF Identity a)
-deriving instance Read a => Read (ListF Identity a)
 deriving instance Show a => Show (ListF Identity a)
 
 sfGenerateFromJSON ''ListF
@@ -162,7 +168,6 @@ type Ruling = RulingF Identity
 
 deriving instance Eq (RulingF Identity)
 deriving instance Ord (RulingF Identity)
-deriving instance Read (RulingF Identity)
 deriving instance Show (RulingF Identity)
 
 sfGenerateFromJSON ''RulingF
@@ -176,7 +181,6 @@ type Symbol = SymbolF Identity
 
 deriving instance Eq (SymbolF Identity)
 deriving instance Ord (SymbolF Identity)
-deriving instance Read (SymbolF Identity)
 deriving instance Show (SymbolF Identity)
 
 sfGenerateFromJSON ''SymbolF
@@ -190,7 +194,6 @@ type Mana = ManaF Identity
 
 deriving instance Eq (ManaF Identity)
 deriving instance Ord (ManaF Identity)
-deriving instance Read (ManaF Identity)
 deriving instance Show (ManaF Identity)
 
 sfGenerateFromJSON ''ManaF
@@ -204,7 +207,6 @@ type Set = SetF Identity
 
 deriving instance Eq (SetF Identity)
 deriving instance Ord (SetF Identity)
-deriving instance Read (SetF Identity)
 deriving instance Show (SetF Identity)
 
 sfGenerateFromJSON ''SetF

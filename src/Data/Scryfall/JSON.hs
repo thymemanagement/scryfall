@@ -9,9 +9,16 @@ import Data.Monoid
 
 import Data.Aeson
 import qualified Data.Text as T
+import Data.UUID
 import Language.Haskell.TH
 import Language.Haskell.TH.Syntax
+import qualified Text.URI as U
 
+instance FromJSON U.URI where
+  parseJSON = withText "URI" $ \t -> case U.mkURI t of
+    Just uriParse -> pure uriParse
+    Nothing -> fail $ "unable to parse \"" ++ T.unpack t ++ "\" as a URI."
+    
 getJSONField :: Name -> Name -> Q String
 getJSONField cnName fdName = case stripPrefix ("_" ++ (headMap toLower . nameBase $ cnName)) (nameBase fdName) of
   Just str -> return $ camelTo2 '_' str
@@ -53,7 +60,7 @@ sfParseJSON :: Name -> Name -> [Name] -> ExpQ
 sfParseJSON tyName cnName fdNames = do
   vName <- newName "v"
   [e| withObject $(stringE . nameBase $ tyName) $ \ $(varP vName) ->
-      $(foldl1 (\acc x -> [e| $acc <*> $x |])
+      $(foldl1' (\acc x -> [e| $acc <*> $x |])
         (headMap (\h -> [e| $(conE cnName) <$> $h |]) ((parseFieldJSON vName cnName) <$> fdNames))) |]
 
 sfFromJSONContext :: [Name] -> CxtQ

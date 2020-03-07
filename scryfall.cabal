@@ -1,5 +1,5 @@
 name:                scryfall
-version:             0.1.0.1
+version:             0.1.0.0
 synopsis:            Implementation of the Scryfall Web API for gathering information on Magic: The Gathering products
 homepage:            https://github.com/thymemanagement/scryfall
 license:             BSD3
@@ -49,8 +49,7 @@ library
     unordered-containers >= 0.2.9.0 && < 0.3,
     template-haskell >= 2.11.0.0 && < 2.16,
     aeson >= 1.4.0.0 && < 1.5,
-    uuid,            
-    network-uri,
+    uuid,
     modern-uri,
     http-conduit < 2.4,
     microlens,            
@@ -87,7 +86,10 @@ test-suite tests
     unordered-containers >= 0.2.9.0 && < 0.3,
     template-haskell >= 2.11.0.0 && < 2.16,
     aeson >= 1.4.0.0 && < 1.5,
+    uuid,
+    modern-uri,
     http-conduit < 2.4,
+    microlens, 
     text >= 1.2.4.0 && < 1.3,
     time >= 1.9 && < 1.10,
     vector >= 0.12.0.0 && < 0.13,
